@@ -1,0 +1,7 @@
+.card__heart_active {
+  background-image: url(../../../../../src/image/heart-active.svg);
+}
+
+.card__heart_active:hover {
+  opacity: 1;
+}
