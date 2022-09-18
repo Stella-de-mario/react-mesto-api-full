@@ -1,10 +1,6 @@
 class Api {
-constructor(baseUrl) {
-    this._baseUrl = baseUrl;
-    this._headers = {
-      authorization: "08894665-6e9a-4a2c-9b4e-7ef096cc96fb",
-      "Content-Type": "application/json",
-    };
+  constructor(options) {
+    this._options = options;
   }
 
   _getResponse(res) {
@@ -86,9 +82,13 @@ constructor(baseUrl) {
   }
 }
 
-const api = new Api(
-  "https://mesto.nomoreparties.co/v1/cohort-43",
-  "08894665-6e9a-4a2c-9b4e-7ef096cc96fb"
-);
+const api = new Api({
+  baseUrl: 'https://mesto.irinavladi.nomoredomains.sbs',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  credentials: 'include',
+});
+
 
 export default api;

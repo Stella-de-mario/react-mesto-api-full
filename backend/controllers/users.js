@@ -8,6 +8,8 @@ const NotFoundError = require('../utils/errors/NotFoundError');
 const UnauthorizedError = require('../utils/errors/UnauthorizedError');
 const InternalServerError = require('../utils/errors/InternalServerError');
 
+const { NODE_ENV, JWT_SECRET } = process.env;
+
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
   User.findOne({ email })
@@ -24,12 +26,13 @@ module.exports.login = (req, res, next) => {
             {
               _id: user._id,
             },
-            'SECRET',
+            NODE_ENV === 'production' ? JWT_SECRET : 'secret-key',
           );
           res.cookie('jwt', token, {
             maxAge: 3600000 * 24 * 7,
             httpOnly: true,
-            sameSite: true,
+            sameSite: 'none',
+            secure: true,
           });
           res.send({ data: user.toJSON() });
         } else {

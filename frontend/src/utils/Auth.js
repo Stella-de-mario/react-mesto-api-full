@@ -3,7 +3,6 @@ class Auth {
     this._baseUrl = options.baseUrl;
   }
   _headers = {
-    Accept: "application/json",
     "Content-Type": "application/json",
   };
 
@@ -42,7 +41,8 @@ class Auth {
 }
     
 const auth = new Auth({
-  baseUrl: "https://auth.nomoreparties.co",
+  baseUrl: "https://mesto.irinavladi.nomoredomains.sbs",
+  credentials: 'include',
 });
 
 export default auth;

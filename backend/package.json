@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "lint": "npx eslint ."
+    "lint": "npx eslint .",
+    "deploy": "npm run build && scp -r ./build/* stella-de-mario@51.250.87.73:/home/irina/dev/react-mesto-api-full/frontend"
   },
   "devDependencies": {
     "eslint": "^8.22.0",
@@ -37,6 +38,5 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Stella-de-mario/express-mesto-gha/issues"
-  },
-  "homepage": "https://github.com/Stella-de-mario/express-mesto-gha#readme"
+  }
 }
