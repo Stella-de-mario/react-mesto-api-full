@@ -1,8 +1,0 @@
-.card__image {
-  height: 282px;
-  width: 282px;
-  object-fit: cover;
-  border-radius: 10px 10px 0 0;
-  box-sizing: content-box;
-  cursor: pointer;
-}
