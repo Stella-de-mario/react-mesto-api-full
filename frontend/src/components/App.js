@@ -24,6 +24,7 @@ function App() {
   const [isImagePopupOpen, setImagePopupOpen] = useState(false);
   const [isInfoTooltipOpen, setisInfoTooltipOpen] = useState(false);
   // const [isConfirmationPopupOpen, setConfirmationPopupOpen] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [deleteCard, setDeleteCard] = useState({});
   const [selectedCard, setSelectedCard] = useState({});
   const [cards, setCards] = useState([]);
