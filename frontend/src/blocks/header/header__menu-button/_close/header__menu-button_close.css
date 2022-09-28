@@ -1,0 +1,5 @@
+.header__menu-button_close {
+    background-image: url(../../../../image/menu-close-button.svg);
+    width: 20px;
+    height: 20px;
+  }

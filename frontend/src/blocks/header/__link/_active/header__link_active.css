@@ -1,0 +1,7 @@
+.header__link_active {
+    transition: opacity 0.2s linear;
+  }
+    
+  .header__link_active:hover {
+    opacity: 0.6;
+  }
