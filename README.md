@@ -4,5 +4,5 @@
 # Ссылки
 Frontend: https://mesto.irinavladi.nomoredomains.sbs  
 Backend: https://api.mesto.irinavladi.nomoredomains.sbs  
-Public IP Address: 51.250.87.73  
+Public IP Address: 51.250.81.203  
 
