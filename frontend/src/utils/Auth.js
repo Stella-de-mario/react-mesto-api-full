@@ -41,7 +41,7 @@ class Auth {
 }
     
 const auth = new Auth({
-  baseUrl: "https://mesto.irinavladi.nomoredomains.sbs",
+  baseUrl: "https://api.mesto.irinavladi.nomoredomains.sbs",
   credentials: 'include',
 });
 
