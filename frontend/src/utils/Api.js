@@ -11,7 +11,7 @@ class Api {
   }
 
   getUserInfo() {
-    return fetch(`${this._baseUrl}/users/me`, {
+    return fetch(`${this.options.baseUrl}/users/me`, {
       method: "GET",
       headers: this._headers,
       credentials: 'include'
@@ -19,7 +19,7 @@ class Api {
   }
 
   getCards() {
-    return fetch(`${this._baseUrl}/cards`, {
+    return fetch(`${this.options.baseUrl}/cards`, {
       method: "GET",
       headers: this._headers,
       credentials: 'include',
@@ -31,7 +31,7 @@ class Api {
   }
 
   setNewUserInfo(data) {
-    return fetch(`${this._baseUrl}/users/me`, {
+    return fetch(`${this.options.baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       credentials: 'include',
@@ -43,7 +43,7 @@ class Api {
   }
 
   setUserAvatar(link) {
-    return fetch(`${this._baseUrl}/users/me/avatar`, {
+    return fetch(`${this.options.baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
       credentials: 'include',
@@ -54,7 +54,7 @@ class Api {
   }
 
   setNewCardsInfo(card) {
-    return fetch(`${this._baseUrl}/cards`, {
+    return fetch(`${this.options.baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
       credentials: 'include',
@@ -66,7 +66,7 @@ class Api {
   }
 
   deleteCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+    return fetch(`${this.options.baseUrl}/cards/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
       credentials: 'include'
@@ -75,13 +75,13 @@ class Api {
 
   changeLikeCardStatus(cardId, isLiked) {
     if (isLiked) {
-      return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      return fetch(`${this.options.baseUrl}/cards/${cardId}/likes`, {
         method: "PUT",
         headers: this._headers,
         credentials: 'include'
       }).then(this._getResponse);
     } else {
-      return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      return fetch(`${this.options.baseUrl}/cards/${cardId}/likes`, {
         method: "DELETE",
         headers: this._headers,
         credentials: 'include'
