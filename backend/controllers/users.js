@@ -68,33 +68,29 @@ module.exports.createUser = (req, res, next) => {
   const {
     name, about, avatar, email, password,
   } = req.body;
-  User.findOne({ email })
-    .then((user) => {
-      if (user) {
-        next(new ConflictingRequestError('Пользователь с таким email уже зарегистрирован'));
-      } else {
-        bcrypt
-          .hash(password, 10)
-          .then((hashedPassword) => {
-            User.create({
-              name,
-              about,
-              avatar,
-              email,
-              password: hashedPassword,
-            })
-              // eslint-disable-next-line no-shadow
-              .then((user) => res.send(user))
-              .catch((err) => {
-                if (err.name === 'ValidationError') {
-                  next(new BadRequestError('Переданы некорректные данные'));
-                }
-              })
-              .catch(next);
-          });
-      }
-    })
-    .catch(next);
+  bcrypt
+    .hash(password, 10)
+    .then((hashedPassword) => {
+      User.create({
+        name,
+        about,
+        avatar,
+        email,
+        password: hashedPassword,
+      })
+        .then((user) => res.send(user))
+        .catch((err) => {
+          if (err.name === 'ValidationError') {
+            next(new BadRequestError('Переданы некорректные данные'));
+          } else if (err.code === 11000) {
+            next(
+              new ConflictingRequestError('Пользователь с таким email уже зарегистрирован'),
+            );
+          } else {
+            next(err);
+          }
+        });
+    });
 };
 
 module.exports.getUserId = (req, res, next) => {
