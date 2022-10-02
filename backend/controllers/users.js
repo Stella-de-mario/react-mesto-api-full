@@ -97,37 +97,25 @@ module.exports.getCurrentUser = (req, res, next) => {
 //     .catch(next);
 // };
 
-module.exports.createUser = (req, res, next) => {
+module.exports.createUser = async (req, res, next) => {
   const {
     name, about, avatar, email, password,
   } = req.body;
-  bcrypt.hash(password, 10)
-    .then((hashedPassword) => User.create({
-      name,
-      about,
-      avatar,
-      email,
-      password: hashedPassword,
-    })
-      .then((user) => {
-        const userData = {
-          name: user.name,
-          about: user.about,
-          avatar: user.avatar,
-          email: user.email,
-          _id: user._id,
-        };
-        res.send(userData);
-      })
-      .catch((err) => {
-        if (err.name === 'ValidationError') {
-          next(new BadRequestError('Переданы некорректные данные'));
-        } else if (err.code === 11000) {
-          next(new ConflictingRequestError('Пользователь с указанным email уже зарегистрирован'));
-        } else {
-          next(err);
-        }
-      }));
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = await User.create({
+      name, about, avatar, email, password: hashedPassword,
+    });
+    res.send({ data: user.toJSON() });
+  } catch (err) {
+    if (err.name === 'ValidationError') {
+      next(new BadRequestError('Переданы некорректные данные'));
+    } else if (err.code === 11000) {
+      next(new ConflictingRequestError('Пользователь с указанным email уже зарегистрирован'));
+    } else {
+      next(err);
+    }
+  }
 };
 
 module.exports.getUserId = (req, res, next) => {
