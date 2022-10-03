@@ -79,7 +79,7 @@ module.exports.createUser = (req, res, next) => {
         password: hashedPassword,
       })
       // eslint-disable-next-line no-shadow
-        .then((user) => res.send(user))
+        .then((user) => res.status(201).send(user))
         .catch((err) => {
           if (err.code === 11000) {
             next(new ConflictingRequestError('Пользователь с таким email уже зарегистрирован'));
