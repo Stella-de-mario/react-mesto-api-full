@@ -1,0 +1,22 @@
+.header__button-close {
+    padding: 0;
+    margin: 0;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: right;
+    color: #A9A9A9;
+    background-color: #000;
+    cursor: pointer;
+    transition: opacity 0.2s linear;
+  }
+    
+  .header__button-close:hover {
+    opacity: 0.6;
+  }
+
+  @media screen and (min-width: 524px) {
+    .header__button-close {
+        display: block;
+    }
+}
