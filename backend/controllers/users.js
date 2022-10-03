@@ -80,6 +80,7 @@ module.exports.createUser = (req, res, next) => {
       })
       // eslint-disable-next-line no-shadow
         .then((user) => res.send(user))
+        .catch(next)
         .catch((err) => {
           if (err.code === 11000) {
             next(new ConflictingRequestError('Пользователь с таким email уже зарегистрирован'));
