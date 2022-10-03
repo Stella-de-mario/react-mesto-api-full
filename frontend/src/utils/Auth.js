@@ -3,6 +3,7 @@ class Auth {
     this._baseUrl = options.baseUrl;
   }
   _headers = {
+    Accept: "application/json",
     "Content-Type": "application/json",
   };
 
@@ -16,8 +17,8 @@ class Auth {
   register({ email, password }) {
       return fetch(`${this._baseUrl}/signup`, {
         method: "POST",
-        credentials: 'include',
         headers: this._headers,
+        credentials: 'include',
         body: JSON.stringify({ email, password }),
       }).then((res) => this._checkResponse(res));;
     }
@@ -25,8 +26,8 @@ class Auth {
     authorize({ email, password }) {
       return fetch(`${this._baseUrl}/signin`, {
         method: "POST",
-        credentials: 'include',
         headers: this._headers,
+        credentials: 'include',
         body: JSON.stringify({ email, password }),
       }).then((res) => this._checkResponse(res));
     }
@@ -44,8 +45,7 @@ class Auth {
 }
     
 const auth = new Auth({
-  baseUrl: "https://api.mesto.irinavladi.nomoredomains.sbs",
-  credentials: 'include',
+  baseUrl: 'https://api.mesto.irinavladi.nomoredomains.sbs'
 });
 
 export default auth;

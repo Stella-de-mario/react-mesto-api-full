@@ -13,7 +13,7 @@ class Api {
   getUserInfo() {
     return fetch(`${this._options.baseUrl}/users/me`, {
       method: "GET",
-      headers: this._headers,
+      headers: this._options.headers,
       credentials: 'include'
     }).then(this._getResponse);
   }
@@ -21,7 +21,7 @@ class Api {
   getCards() {
     return fetch(`${this._options.baseUrl}/cards`, {
       method: "GET",
-      headers: this._headers,
+      headers: this._options.headers,
       credentials: 'include',
     }).then(this._getResponse);
   }
@@ -33,7 +33,7 @@ class Api {
   setNewUserInfo(data) {
     return fetch(`${this._options.baseUrl}/users/me`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: this._options.headers,
       credentials: 'include',
       body: JSON.stringify({
         name: data.name,
@@ -45,7 +45,7 @@ class Api {
   setUserAvatar(link) {
     return fetch(`${this._options.baseUrl}/users/me/avatar`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: this._options.headers,
       credentials: 'include',
       body: JSON.stringify({
         avatar: link.avatar,
@@ -56,7 +56,7 @@ class Api {
   setNewCardsInfo(card) {
     return fetch(`${this._options.baseUrl}/cards`, {
       method: "POST",
-      headers: this._headers,
+      headers: this._options.headers,
       credentials: 'include',
       body: JSON.stringify({
         name: card.title,
@@ -68,7 +68,7 @@ class Api {
   deleteCard(cardId) {
     return fetch(`${this._options.baseUrl}/cards/${cardId}`, {
       method: "DELETE",
-      headers: this._headers,
+      headers: this._options.headers,
       credentials: 'include'
     }).then(this._getResponse);
   }
@@ -77,13 +77,13 @@ class Api {
     if (isLiked) {
       return fetch(`${this._options.baseUrl}/cards/${cardId}/likes`, {
         method: "PUT",
-        headers: this._headers,
+        headers: this._options.headers,
         credentials: 'include'
       }).then(this._getResponse);
     } else {
       return fetch(`${this._options.baseUrl}/cards/${cardId}/likes`, {
         method: "DELETE",
-        headers: this._headers,
+        headers: this._options.headers,
         credentials: 'include'
       }).then(this._getResponse);
     }
