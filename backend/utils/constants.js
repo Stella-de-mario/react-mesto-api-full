@@ -5,7 +5,7 @@ const regexId = /^[a-z0-9]{24}$/i;
 
 const allowedCors = [
   'http://localhost:3000',
-  'http://locahost:3001',
+  'http://localhost:3001',
   'http://api.mesto.irinavladi.nomoredomains.sbs',
   'https://api.mesto.irinavladi.nomoredomains.sbs',
   'http://mesto.irinavladi.nomoredomains.sbs',
