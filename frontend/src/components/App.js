@@ -39,29 +39,21 @@ function App() {
     isEditAvatarPopupOpen ||
     isEditProfilePopupOpen ||
     isImagePopupOpen;
-
-  function handkeCheckToken() {
-    const jwt = localStorage.getItem("jwt");
-    if (!jwt) {
-      return;
-    }
-    auth
-      .checkToken(jwt)
-      .then((data) => {
-        if (data) {
-          setUserEmail(data.data.email);
+  
+  function handleCheckToken() {
+      auth.getToken()
+        .then((data) => {
           setIsLoggedIn(true);
-          history.push("/");
-        } else {
-          setIsLoggedIn(false);
-          localStorage.removeItem("jwt");
-        }
-      })
-      .catch((err) => console.log(err));
-  }
+          setUserEmail(data.email);
+          history.push('/');
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    } 
 
   useEffect(() => {
-    handkeCheckToken();
+    handleCheckToken();
   }, []);
 
   useEffect(() => {
