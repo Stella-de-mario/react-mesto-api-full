@@ -89,8 +89,7 @@ module.exports.createUser = (req, res, next) => {
             next(err);
           }
         });
-    })
-    .catch(next);
+    });
 };
 
 module.exports.getUserId = (req, res, next) => {
