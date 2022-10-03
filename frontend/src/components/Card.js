@@ -4,12 +4,12 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   const currentUser = useContext(CurrentUserContext);
 
-  const isOwn = card.owner._id === currentUser._id;
+  const isOwn = card.owner === currentUser._id;
   const cardDeleteButtonClassName = `card__delete-button ${
     isOwn ? "" : "card__delete-button_inactive"
   }`;
 
-  const isLiked = card.likes.some((item) => item._id === currentUser._id);
+  const isLiked = card.likes.some((item) => item === currentUser._id);
   const cardLikeButtonClassName = `card__heart ${
     isLiked ? "card__heart_active" : ""
   }`;
