@@ -182,9 +182,7 @@ function App() {
     api
       .changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
-        setCards((state) =>
-          state.map((c) => (c._id === card._id ? newCard : c))
-        );
+        setCards(cards.map((currentCard) => currentCard._id === card._id ? newCard : currentCard));
       })
       .catch((err) => console.log(err));
   }
@@ -195,7 +193,7 @@ function App() {
       api
         .deleteCard(card._id)
         .then(() => {
-          setCards((state) => state.filter((c) => card._id !== c._id));
+          setCards(cards.filter((currentCard) => currentCard._id !== card._id));
         })
         .catch((err) => console.log(err));
     }

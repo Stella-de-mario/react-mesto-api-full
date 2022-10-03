@@ -74,7 +74,7 @@ class Api {
   }
 
   changeLikeCardStatus(cardId, isLiked) {
-    if (isLiked) {
+    if (!isLiked) {
       return fetch(`${this._options.baseUrl}/cards/${cardId}/likes`, {
         method: "PUT",
         headers: this._options.headers,
