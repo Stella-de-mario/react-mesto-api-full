@@ -25,6 +25,7 @@ function EditProfilePopup ({isPopupOpened, onClose, onUpdateUser}) {
     title="Редактировать профиль"
     buttonText="Сохранить"
     onClose={onClose}
+    isDisabled={true}
     isPopupOpened={`${isPopupOpened ? "popup_opened" : ""}`}
     onSubmit={handleSubmit}
   >

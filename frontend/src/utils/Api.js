@@ -1,10 +1,6 @@
 class Api {
-constructor(baseUrl) {
-    this._baseUrl = baseUrl;
-    this._headers = {
-      authorization: "08894665-6e9a-4a2c-9b4e-7ef096cc96fb",
-      "Content-Type": "application/json",
-    };
+  constructor(options) {
+    this._options = options;
   }
 
   _getResponse(res) {
@@ -15,16 +11,18 @@ constructor(baseUrl) {
   }
 
   getUserInfo() {
-    return fetch(`${this._baseUrl}/users/me`, {
+    return fetch(`${this._options.baseUrl}/users/me`, {
       method: "GET",
       headers: this._headers,
+      credentials: 'include'
     }).then(this._getResponse);
   }
 
   getCards() {
-    return fetch(`${this._baseUrl}/cards`, {
+    return fetch(`${this._options.baseUrl}/cards`, {
       method: "GET",
       headers: this._headers,
+      credentials: 'include',
     }).then(this._getResponse);
   }
 
@@ -33,9 +31,10 @@ constructor(baseUrl) {
   }
 
   setNewUserInfo(data) {
-    return fetch(`${this._baseUrl}/users/me`, {
+    return fetch(`${this._options.baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
+      credentials: 'include',
       body: JSON.stringify({
         name: data.name,
         about: data.about,
@@ -44,9 +43,10 @@ constructor(baseUrl) {
   }
 
   setUserAvatar(link) {
-    return fetch(`${this._baseUrl}/users/me/avatar`, {
+    return fetch(`${this._options.baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
+      credentials: 'include',
       body: JSON.stringify({
         avatar: link.avatar,
       }),
@@ -54,9 +54,10 @@ constructor(baseUrl) {
   }
 
   setNewCardsInfo(card) {
-    return fetch(`${this._baseUrl}/cards`, {
+    return fetch(`${this._options.baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
+      credentials: 'include',
       body: JSON.stringify({
         name: card.title,
         link: card.link,
@@ -65,30 +66,37 @@ constructor(baseUrl) {
   }
 
   deleteCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+    return fetch(`${this._options.baseUrl}/cards/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
+      credentials: 'include'
     }).then(this._getResponse);
   }
 
   changeLikeCardStatus(cardId, isLiked) {
     if (isLiked) {
-      return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      return fetch(`${this._options.baseUrl}/cards/${cardId}/likes`, {
         method: "PUT",
         headers: this._headers,
+        credentials: 'include'
       }).then(this._getResponse);
     } else {
-      return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      return fetch(`${this._options.baseUrl}/cards/${cardId}/likes`, {
         method: "DELETE",
         headers: this._headers,
+        credentials: 'include'
       }).then(this._getResponse);
     }
   }
 }
 
-const api = new Api(
-  "https://mesto.nomoreparties.co/v1/cohort-43",
-  "08894665-6e9a-4a2c-9b4e-7ef096cc96fb"
-);
+const api = new Api({
+  baseUrl: 'https://api.mesto.irinavladi.nomoredomains.sbs',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  credentials: 'include',
+});
+
 
 export default api;
