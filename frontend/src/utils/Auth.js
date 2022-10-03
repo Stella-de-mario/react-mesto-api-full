@@ -16,6 +16,7 @@ class Auth {
   register({ email, password }) {
       return fetch(`${this._baseUrl}/signup`, {
         method: "POST",
+        credentials: 'include',
         headers: this._headers,
         body: JSON.stringify({ email, password }),
       }).then((res) => this._checkResponse(res));;
@@ -24,6 +25,7 @@ class Auth {
     authorize({ email, password }) {
       return fetch(`${this._baseUrl}/signin`, {
         method: "POST",
+        credentials: 'include',
         headers: this._headers,
         body: JSON.stringify({ email, password }),
       }).then((res) => this._checkResponse(res));
@@ -32,6 +34,7 @@ class Auth {
     checkToken(token) {
       return fetch(`${this._baseUrl}/users/me`, {
         method: "GET",
+        credentials: 'include',
         headers: {
           ...this._headers,
           authorization: `Bearer ${token}`,
