@@ -21,7 +21,6 @@ function handleSubmit(evt) {
       isPopupOpened={isPopupOpened}
       onClose={onClose}
       onSubmit={handleSubmit}
-      isDisabled={true}
     ></PopupWithForm>
   );
 }

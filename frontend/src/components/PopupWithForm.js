@@ -21,7 +21,6 @@ function PopupWithForm({ name, title, children, buttonText, isPopupOpened, onClo
       <button 
       className="popup__save-button" 
       type="submit"
-      disabled={!isDisabled}
       >{buttonText}
       </button>
      </form>
