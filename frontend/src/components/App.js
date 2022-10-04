@@ -79,6 +79,7 @@ function App() {
       .catch((err) => {
         console.log(err);
         setIsLoggedIn(false);
+        setIsSuccess(false);
         handleInfoTooltip();
       });
   }
