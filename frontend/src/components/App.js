@@ -225,13 +225,10 @@ function App() {
     setIsEditAvatarPopupOpen(false);
     setImagePopupOpen(false);
     setIsInfoTooltipOpen(false);
-    // eslint-disable-next-line no-undef
-    setIsStatusRegistration(false);
     // setConfirmationPopupOpen(false);
     setDeleteCard({});
     setSelectedCard({});
   }
-
 
   function handleOverlayClick(evt) {
     if (evt.target === evt.currentTarget) {
