@@ -42,16 +42,8 @@ module.exports.login = (req, res, next) => {
     .catch(next);
 };
 
-module.exports.logOut = async (req, res, next) => {
-  try {
-    if (!req.cookies) {
-      return next(new NotFoundError('Пользователь с указанным id не найден'));
-    }
-    res.clearCookie('jwt').send().end();
-  } catch (err) {
-    return next(new InternalServerError('Произошла ошибка на сервере'));
-  }
-};
+module.exports.logOut = async (req, res) => res.status(200).clearCookie('jwt').send({});
+
 
 module.exports.getUsers = (req, res, next) => {
   User.find({})
