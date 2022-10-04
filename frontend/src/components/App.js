@@ -291,7 +291,7 @@ function App() {
         <InfoTooltip
           isPopupOpened={isInfoTooltipOpen}
           onClose={closeAllPopups}
-          status={isStatusRegistration}
+          isLoggedIn={isLoggedIn}
         />
         <ImagePopup
           isPopupOpened={isImagePopupOpen}

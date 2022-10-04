@@ -2,7 +2,7 @@ import React from "react";
 import registrationEr from "../image/registrationEr.svg";
 import registrationOk from "../image/registrationOk.svg";
 
-function InfoTooltip({ isPopupOpened, onClose, status }) {
+function InfoTooltip({ isPopupOpened, onClose, isLoggedIn }) {
   
     return (
         <div className={`popup ${isPopupOpened && 'popup_opened'}`}>
@@ -13,8 +13,8 @@ function InfoTooltip({ isPopupOpened, onClose, status }) {
             aria-label="Закрыть" 
             onClick={onClose}
           ></button>
-          <img className="popup__registration-image" src={status ? registrationOk : registrationEr } alt="Статус регистрации" />
-          <h2 className="popup__text popup__text_info">{status ? "Вы успешно зарегистрировались!" : "Что-то пошло не так! Попробуйте ещё раз." }</h2>
+          <img className="popup__registration-image" src={isLoggedIn ? registrationOk : registrationEr } alt="Статус регистрации" />
+          <h2 className="popup__text popup__text_info">{isLoggedIn ? "Вы успешно зарегистрировались!" : "Что-то пошло не так! Попробуйте ещё раз." }</h2>
         </div>
       </div>
     )
