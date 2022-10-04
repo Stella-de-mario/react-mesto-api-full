@@ -307,6 +307,7 @@ function App() {
           isLoggedIn={isLoggedIn}
           isSuccess={isSuccess}
           onOverlay={handleOverlayClick}
+
         />
         <ImagePopup
           isPopupOpened={isImagePopupOpen}
