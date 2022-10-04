@@ -22,14 +22,14 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isImagePopupOpen, setImagePopupOpen] = useState(false);
-  const [isInfoTooltipOpen, setisInfoTooltipOpen] = useState(false);
+  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
   // const [isConfirmationPopupOpen, setConfirmationPopupOpen] = useState(false);
   // eslint-disable-next-line no-unused-vars
   const [deleteCard, setDeleteCard] = useState({});
   const [selectedCard, setSelectedCard] = useState({});
   const [cards, setCards] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isStatusRegistration, setIsStatusRegistration] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
   const [userEmail, setUserEmail] = useState("");
 
   const history = useHistory();
@@ -94,6 +94,7 @@ function App() {
       .catch((err) => {
         console.log(err);
         setIsLoggedIn(false);
+        setIsSuccess(false);
         handleInfoTooltip();
       });
   }
@@ -146,7 +147,7 @@ function App() {
   // }
 
   function handleInfoTooltip() {
-    setisInfoTooltipOpen(true);
+    setIsInfoTooltipOpen(true);
   }
 
   useEffect(() => {
@@ -222,8 +223,9 @@ function App() {
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
     setImagePopupOpen(false);
-    setisInfoTooltipOpen(false);
-    setIsStatusRegistration({});
+    setIsInfoTooltipOpen(false);
+    // eslint-disable-next-line no-undef
+    setIsStatusRegistration(false);
     // setConfirmationPopupOpen(false);
     setDeleteCard({});
     setSelectedCard({});
@@ -292,6 +294,7 @@ function App() {
           isPopupOpened={isInfoTooltipOpen}
           onClose={closeAllPopups}
           isLoggedIn={isLoggedIn}
+          isSuccess={isSuccess}
         />
         <ImagePopup
           isPopupOpened={isImagePopupOpen}
