@@ -40,8 +40,14 @@ function App() {
     isEditProfilePopupOpen ||
     isImagePopupOpen;
   
-  function handleCheckToken() {
-      auth.getToken()
+    useEffect(() => {
+      if (isLoggedIn) {
+        history.push("/");
+      }
+    }, [isLoggedIn, history]);
+  
+    function handleCheckToken() {
+      auth.checkToken()
         .then((data) => {
           setIsLoggedIn(true);
           setUserEmail(data.email);
@@ -52,22 +58,22 @@ function App() {
         })
     } 
 
-  useEffect(() => {
-    handleCheckToken();
-  }, []);
+    useEffect(() => {
+      const loggedIn = localStorage.getItem('loggedIn');
+      if (loggedIn) {
+        handleCheckToken();
+      }
+    }, []);
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      history.push("/");
-    }
-  }, [isLoggedIn, history]);
 
-  function handleAuthorizer(data) {
+  function handleAuthorizer(userData) {
+    setUserEmail(userData.email)
     auth
-      .authorize(data)
-      .then((data) => {
+      .authorize(userData)
+      .then((userData) => {
         setIsLoggedIn(true);
-        localStorage.setItem("jwt", data.token);
+        localStorage.setItem('loggedIn', true);
+        setCurrentUser(userData.data);
         history.push("/");
       })
       .catch((err) => {
@@ -80,22 +86,30 @@ function App() {
   function handleRegister(userInfo) {
     auth
       .register(userInfo)
-      .then(() => {
-        setIsStatusRegistration(true);
+      .then((data) => {
+        handleAuthorizer(userInfo);
         handleInfoTooltip();
-        history.push("/sign-in");
+        setUserEmail(data.email);
       })
       .catch((err) => {
         console.log(err);
-        setIsStatusRegistration(false);
+        setIsLoggedIn(false);
         handleInfoTooltip();
       });
   }
 
   function handleSignOut() {
-    setIsLoggedIn(false);
-    localStorage.removeItem("jwt");
-    history.push("/sign-in");
+    auth
+    .logOut()
+    .then((res) => {
+      setIsLoggedIn(false);
+      localStorage.removeItem('loggedIn');
+      history.push("/sign-in");
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+   
   }
 
   useEffect(() => {

@@ -32,16 +32,23 @@ class Auth {
       }).then((res) => this._checkResponse(res));
     }
     
-    checkToken(token) {
+    checkToken() {
       return fetch(`${this._baseUrl}/users/me`, {
         method: "GET",
         credentials: 'include',
-        headers: {
-          ...this._headers,
-          authorization: `Bearer ${token}`,
-        },
-      }).then((res) => this._checkResponse(res));
+        headers: this._headers,
+      })
+      .then((res) => this._checkResponse(res));
     }
+    
+   logOut() {
+     return fetch(`${this._baseUrl}/signout`, {
+     method: 'DELETE',
+     headers: this.headers,
+     credentials: 'include',
+  })
+  .then((res) => this._checkResponse(res));
+  }
 }
     
 const auth = new Auth({
