@@ -232,6 +232,13 @@ function App() {
     setSelectedCard({});
   }
 
+
+  function handleOverlayClick(evt) {
+    if (evt.target === evt.currentTarget) {
+      closeAllPopups();
+    }
+  };
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -273,16 +280,19 @@ function App() {
           isPopupOpened={isEditProfilePopupOpen}
           onClose={closeAllPopups}
           onUpdateUser={handleUpdateUser}
+          onOverlay={handleOverlayClick}
         />
         <EditAvatarPopup
           isPopupOpened={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
           onUpdateAvatar={handleUpdateAvatar}
+          onOverlay={handleOverlayClick}
         />
         <AddPlacePopup
           isPopupOpened={isAddPlacePopupOpen}
           onClose={closeAllPopups}
           onAddPlace={handleAddPlace}
+          onOverlay={handleOverlayClick}
         />
         {/* <ConfirmationPopup
           card={deleteCard}
@@ -296,11 +306,13 @@ function App() {
           onClose={closeAllPopups}
           isLoggedIn={isLoggedIn}
           isSuccess={isSuccess}
+          onOverlay={handleOverlayClick}
         />
         <ImagePopup
           isPopupOpened={isImagePopupOpen}
           onClose={closeAllPopups}
           card={selectedCard}
+          onOverlay={handleOverlayClick}
         />
       </div>
     </CurrentUserContext.Provider>
